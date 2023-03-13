@@ -35,8 +35,6 @@ use_knockknock = True #set this to false if you are not using knockknock.
 
 if use_knockknock:
 
-    !pip install knockknock
-
     from knockknock import telegram_sender 
 
     from kaggle_secrets import UserSecretsClient

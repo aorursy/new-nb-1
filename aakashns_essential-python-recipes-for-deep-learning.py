@@ -128,10 +128,10 @@ print(img0.shape)
 
 plt.imshow(img0)
 
-plt.title(train_sample[0]);
+plt.title(train_sample[0])
 # Use a color map for grayscale images
 
-plt.imshow(img0, cmap="Reds");
+plt.imshow(img0, cmap="Reds")
 # For RGB images, it "just works"
 
 

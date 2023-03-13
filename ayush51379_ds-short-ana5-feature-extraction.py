@@ -431,10 +431,8 @@ def get_sub(test):
     get = get_final_feat(test, test_labels_derive_time)
 
     return get
-    %%time
 
     get_train = get_all(train)
-    %%time
 
     get_test = get_all(test)
 

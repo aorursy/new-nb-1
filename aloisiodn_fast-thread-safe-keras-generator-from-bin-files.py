@@ -261,9 +261,7 @@ def make_val_set(df, split_percentage=0.2, drop_percentage=0.):
     val_df = pd.DataFrame(val_list, columns=columns)   
 
     return train_df, val_df
-train_images_df, val_images_df = make_val_set(train_offsets_df, split_percentage=0.2, 
-
-                                              drop_percentage=0.9)
+train_images_df, val_images_df = make_val_set(train_offsets_df, split_percentage=0.2, drop_percentage=0.9)
 train_images_df.head()
 val_images_df.head()
 print("Number of training images:", len(train_images_df))
@@ -380,11 +378,7 @@ def bin_file_test(file_name, encoder, n=3):
 
             plt.imshow(img)
 
-            plt.text(5,20,
-
-                     "%d Class: %s (size: %d)" %(count, encoder.inverse_transform(encoded_class), length),
-
-                    backgroundcolor='0.75',alpha=.5)
+            plt.text(5,20,"%d Class: %s (size: %d)" %(count, encoder.inverse_transform(encoded_class), length),backgroundcolor='0.75',alpha=.5)
 
 #create train bin file and test it!!!
 
@@ -495,15 +489,15 @@ data_gen = BinFileIterator('train.bin', img_generator=train_img_gen,  samples=10
                  batch_size=3)
 for b in range(3):
 
-  imgs, categories = data_gen.next()
+    imgs, categories = data_gen.next()
 
-  for img, category in zip(imgs, categories): 
+    for img, category in zip(imgs, categories): 
 
-      plt.figure()
+        plt.figure()
+        
+        plt.imshow(img)
 
-      plt.imshow(img)
-
-      plt.text(5,20,
+        plt.text(5,20,
 
                "Class: %d %s" % (np.argmax(category), le.inverse_transform(np.argmax(category))),
 
@@ -517,8 +511,6 @@ data_gen = BinFileIterator('train.bin', img_generator=train_img_gen,  samples=10
                  batch_size=128) #We changed the batch size here 
 
 for b in range(3):
-
-  %time imgs, categories = data_gen.next()
 
   print("Retrieved: %d" %(len(imgs))  ) 
 
@@ -551,9 +543,9 @@ data_gen = BinFileIterator('train.bin', img_generator=train_img_gen,  samples=10
 
 def execute_batch(t_name):
 
-   imgs, categories = data_gen.next()
+    imgs, categories = data_gen.next()
 
-   print(t_name, "retrieved: %d" %len(imgs), 
+    print(t_name, "retrieved: %d" %len(imgs), 
 
                  "last category:" , le.inverse_transform(np.argmax(categories[-1])))
 
@@ -563,19 +555,19 @@ def execute_batch(t_name):
 
 try:
 
-   _thread.start_new_thread( execute_batch, ("Thread-1", ) )
+    _thread.start_new_thread( execute_batch, ("Thread-1", ) )
 
-   time.sleep(0.001)   
+    time.sleep(0.001)   
 
-   _thread.start_new_thread( execute_batch, ("Thread-2", ) )
+    _thread.start_new_thread( execute_batch, ("Thread-2", ) )
 
-   time.sleep(0.001)   
+    time.sleep(0.001)   
 
-   _thread.start_new_thread( execute_batch, ("Thread-3", ) )
+    _thread.start_new_thread( execute_batch, ("Thread-3", ) )
 
 except:
 
-   print ("Error: unable to start thread")
+    print ("Error: unable to start thread")
 
 
 

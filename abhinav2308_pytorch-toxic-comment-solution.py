@@ -379,8 +379,6 @@ with torch.no_grad():
 
         myPreds.append(pred.cpu().numpy())
 
-        del pred;del obj;
-
         torch.cuda.empty_cache()
 myPreds= np.vstack(myPreds)
 for i, col in enumerate(["toxic", "severe_toxic", "obscene", "threat", "insult", "identity_hate"]):

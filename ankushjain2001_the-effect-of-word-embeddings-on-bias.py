@@ -253,7 +253,6 @@ print(f'Final Metric: {nb_final_bias}')
 from bert_embedding import BertEmbedding
 
 def get_bert_embed_matrix():
-    %%time
     # Total CPU time (my machine): 1d 4h 7min
     vocab = list(tokenizer.word_index.keys())
     embedding_results = bert_embedding(vocab)
