@@ -15,10 +15,6 @@ import os
 
 import re
 
-
-
-
-
 os.environ['OMP_NUM_THREADS'] = '4'
 
 my_tok = spacy.load('en')
@@ -200,8 +196,6 @@ class MyModel(nn.Module):
 
         outp = self.l1(ipForLinearLayer)
 
-        del embedded;del rnn_out;del self.h;
-
         torch.cuda.empty_cache()
 
         return outp
@@ -280,8 +274,6 @@ def oneEpoch(lr):
 
         allActualPreds.append(obj[1].detach().cpu().numpy())
 
-        del obj;del preds
-
     trainRocLoss= roc_auc_score(np.vstack(allActualPreds),np.vstack(allPreds))
 
     runningLoss= runningLoss/len(train_batch_it)
@@ -308,8 +300,6 @@ loss_func= torch.nn.BCEWithLogitsLoss()
 model = model.cuda()
 
 for i in range(epochs):
-
-    %time tLoss,vLoss,tRocLoss,vRocLoss= oneEpoch(1e-4)
 
     print(f"Epoch - {i}")
 

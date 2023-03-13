@@ -7,8 +7,6 @@
 
 from pathlib import Path
 
-
-
 DATA_DIR = Path('../input')
 
 TRAIN_DIR = DATA_DIR/'train'
@@ -35,8 +33,6 @@ LABELS_CSV = DATA_DIR/'train.csv'
 # Enter pandas
 
 import pandas as pd
-
-
 
 train_df = pd.read_csv(LABELS_CSV, index_col='Id')
 
@@ -68,8 +64,6 @@ label_names = ["Nucleoplasm", "Nuclear membrane", "Nucleoli", "Nucleoli fibrilla
 
                "Cytosol", "Cytoplasmic bodies", "Rods & rings"]
 import numpy as np
-
-
 
 def get_label_freqs(targets, label_names, ascending=None):
 
@@ -109,16 +103,14 @@ train_freqs = get_label_freqs(train_df.Target, label_names, ascending=False)
 train_freqs
 # Visualize the frequency table using a chart
 
-train_freqs.plot(x='name', y='frequency', kind='bar', title='Name vs. Frequency');
+train_freqs.plot(x='name', y='frequency', kind='bar', title='Name vs. Frequency')
 # Use logarithmic axis for easier interpretation
 
-train_freqs.plot(x='name', y='frequency', kind='bar', logy=True, title='Name vs. log(Frequency)');
+train_freqs.plot(x='name', y='frequency', kind='bar', logy=True, title='Name vs. log(Frequency)')
 train_sample = "ac39847a-bbb1-11e8-b2ba-ac1f6b6435d0_red.png"
 from imageio import imread
 
 import matplotlib.pyplot as plt
-
-
 
 # Look at one channel/filter
 
@@ -139,7 +131,7 @@ plt.imshow(img0, cmap="Reds")
 
 img = imread('sample.jpg')
 
-plt.imshow(img);
+plt.imshow(img)
 CHANNELS = ['green', 'red', 'blue', 'yellow']
 
 
@@ -199,7 +191,7 @@ img_id = 'ac39847a-bbb1-11e8-b2ba-ac1f6b6435d0'
 
 img, title = load_image(img_id), get_labels(img_id)
 
-show_image_filters(img, title);
+show_image_filters(img, title)
 
 print(img.shape)
 # Combine with pandas to view a random sample
@@ -228,8 +220,6 @@ print(preds)
 def sigmoid(x):
 
     return np.reciprocal(np.exp(-x) + 1) 
-
-
 
 probs = sigmoid(preds)
 
@@ -278,8 +268,6 @@ def make_sub(fname):
     fpath = SUB_DIR/fname
 
     sub_df.to_csv(fpath, index=None)
-
-    !head {fpath}
 
     return FileLink(fpath)
 make_sub('best_submission.csv')
